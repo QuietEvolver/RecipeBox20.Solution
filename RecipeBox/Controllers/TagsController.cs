@@ -21,32 +21,35 @@ namespace RecipeBox.Controllers
       return View(_db.Tags.ToList());
     }
 
-    // public ActionResult Create()
-    // {
-    //   ViewBag.RecipeId = new SelectList(_db.Recipes, "RecipeId", "Name");
-    //   return View();
-    // }
+    public ActionResult Create()
+    {
+      ViewBag.RecipeId = new MultiSelectList(_db.Recipes, "RecipeId", "RecipeName");
+      return View();
+    }
 
-    // [HttpPost]
-    // public ActionResult Create(Tag tag, int RecipeId)
-    // {
-    //   _db.Tags.Add(tag);
-    //   if (RecipeId != 0)
-    //   {
-    //     _db.TagRecipe.Add(new TagRecipe() { RecipeId = RecipeId, TagId = tag.TagId });
-    //   }
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public ActionResult Create(Tag tag, List<int> RecipeId)
+    {
+      _db.Tags.Add(tag);
+      if (RecipeId.Count != 0)
+      {
+          foreach (int Recipe in RecipeId)
+          {
+            _db.TagRecipe.Add(new TagRecipe() { RecipeId = Recipe, TagId = tag.TagId });
+          }
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
-    // public ActionResult Details(int id)
-    // {
-    //   var thisTag = _db.Tags
-    //       .Include(tag => tag.Recipes)
-    //       .ThenInclude(join => join.Recipe)
-    //       .FirstOrDefault(tag => tag.TagId == id);
-    //   return View(thisTag);
-    // }
+    public ActionResult Details(int id)
+    {
+      var thisTag = _db.Tags
+          .Include(tag => tag.Recipes)
+          .ThenInclude(join => join.Recipe)
+          .FirstOrDefault(tag => tag.TagId == id);
+      return View(thisTag);
+    }
 
     // public ActionResult Edit(int id)
     // {
