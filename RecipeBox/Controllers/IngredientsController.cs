@@ -29,19 +29,23 @@ namespace RecipeBox.Controllers
     [HttpPost]
     public ActionResult Create(Ingredient ingredient)
     {
-      _db.Ingredients.Add(ingredient);
-      _db.SaveChanges();
+      if (_db.Ingredients.FirstOrDefault(ing => ing.IngredientDescription == ingredient.IngredientDescription) == null)
+      {
+        _db.Ingredients.Add(ingredient);
+        _db.SaveChanges();
+      }
+
       return RedirectToAction("Index");
     }
 
-//     public ActionResult Details(int id)
-//     {
-//       var thisIngredient = _db.Ingredients
-//           .Include(ingredient => ingredient.Recipes)
-//           .ThenInclude(join => join.Recipe)
-//           .FirstOrDefault(ingredient => ingredient.IngredientId == id);
-//       return View(thisIngredient);
-//     }
+    public ActionResult Details(int id)
+    {
+      var thisIngredient = _db.Ingredients
+          .Include(ingredient => ingredient.Recipes)
+          .ThenInclude(join => join.Recipe)
+          .FirstOrDefault(ingredient => ingredient.IngredientId == id);
+      return View(thisIngredient);
+    }
 
 //     public ActionResult Edit(int id)
 //     {
