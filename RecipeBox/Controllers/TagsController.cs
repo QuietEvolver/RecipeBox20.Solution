@@ -113,22 +113,13 @@ namespace RecipeBox.Controllers
       return View(thisTag);
     }
 
-    // [HttpPost, ActionName("Delete")]
-    // public ActionResult DeleteConfirmed(int id)
-    // {
-    //   var thisTag = _db.Tags.FirstOrDefault(tags => tags.TagId == id);
-    //   _db.Tags.Remove(thisTag);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
-
-    // [HttpPost]
-    // public ActionResult DeleteRecipe(int joinId)
-    // {
-    //   var joinEntry = _db.TagRecipe.FirstOrDefault(entry => entry.TagRecipeId == joinId);
-    //   _db.TagRecipe.Remove(joinEntry);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisTag = _db.Tags.FirstOrDefault(tags => tags.TagId == id);
+      _db.Tags.Remove(thisTag);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }
