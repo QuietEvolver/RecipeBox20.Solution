@@ -62,33 +62,33 @@ namespace RecipeBox.Controllers
       return View(thisRecipe);
     }
 
-    // public ActionResult Edit(int id)
-    // {
-    //   var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
-    //   return View(thisRecipe);
-    // }
+    public ActionResult Edit(int id)
+    {
+      var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      return View(thisRecipe);
+    }
 
-    // [HttpPost]
-    // public ActionResult Edit(Recipe recipe)
-    // {
-    //   _db.Entry(recipe).State = EntityState.Modified;
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost]
+    public ActionResult Edit(Recipe recipe)
+    {
+      _db.Entry(recipe).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
 
-    // public ActionResult Delete(int id)
-    // {
-    //   var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
-    //   return View(thisRecipe);
-    // }
+    public ActionResult Delete(int id)
+    {
+      var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      return View(thisRecipe);
+    }
 
-    // [HttpPost, ActionName("Delete")]
-    // public ActionResult DeleteConfirmed(int id)
-    // {
-    //   var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
-    //   _db.Recipes.Remove(thisRecipe);
-    //   _db.SaveChanges();
-    //   return RedirectToAction("Index");
-    // }
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      _db.Recipes.Remove(thisRecipe);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 }

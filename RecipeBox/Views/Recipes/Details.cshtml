@@ -42,5 +42,8 @@ else
 }
 
 <p>@Html.ActionLink("Add an ingredient", "AddIngredient", new {id = Model.RecipeId})</p>
+<p>@Html.ActionLink("Add Tag", "AddTag", new {id = Model.RecipeId})</p>
+<p>@Html.ActionLink("Edit recipe", "Edit", new {id = Model.RecipeId})</p>
+<p>@Html.ActionLink("Delete recipe", "Delete", new {id = Model.RecipeId})</p>
 <p>@Html.ActionLink("Go back to list of recipes", "Index")</p>
 <p>@Html.ActionLink("Go back to home", "Index", "Home")</p>
