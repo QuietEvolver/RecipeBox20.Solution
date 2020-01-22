@@ -2,24 +2,24 @@
   Layout = "_Layout";
 }
 
-@model RecipeBox.Models.Tag
+@model RecipeBox.Models.Ingredient
 
 <h2>Edit</h2>
 
-<h4>Edit this tag: @Html.DisplayFor(model => model.TagDescription)</h4>
+<h4>Edit this ingredient: @Html.DisplayFor(model => model.IngredientDescription)</h4>
 
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.Recipes)
-    @Html.HiddenFor(model => model.TagId)
+    @Html.HiddenFor(model => model.IngredientId)
     <div class="form-group">
-        @Html.LabelFor(model => model.TagDescription)
-        @Html.EditorFor(model => model.TagDescription)
+        @Html.LabelFor(model => model.IngredientDescription)
+        @Html.EditorFor(model => model.IngredientDescription)
     </div>
    
     <input type="submit" value="Save" />
 }
 
-<p>@Html.ActionLink("Add an Recipe", "AddRecipe", new {id = Model.TagId})</p>
-<p>@Html.ActionLink("Back to tag list", "Index")</p>
+<p>@Html.ActionLink("Add an Recipe", "AddRecipe", new {id = Model.IngredientId})</p>
+<p>@Html.ActionLink("Back to ingredient list", "Index")</p>
 <h3>@Html.ActionLink("Home", "Index", "Home")</h3>

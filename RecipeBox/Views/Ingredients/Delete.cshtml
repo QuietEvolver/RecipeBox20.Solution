@@ -2,11 +2,11 @@
   Layout = "_Layout";
 }
 
-@model RecipeBox.Models.Tag
+@model RecipeBox.Models.Ingredient
 
 <h2>Are you sure you want to delete this?</h2>
 
-@Html.DisplayNameFor(model => model.TagDescription): @Html.DisplayFor(model => model.TagDescription)
+@Html.DisplayNameFor(model => model.IngredientDescription): @Html.DisplayFor(model => model.IngredientDescription)
 @using (Html.BeginForm())
 {
     <input type="submit" value="Delete" />
