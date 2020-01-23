@@ -35,8 +35,8 @@ namespace RecipeBox.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      ViewBag.TagId = new MultiSelectList(_db.Tags.Where(entry => entry.User.Id == currentUser.Id), "TagId", "TagDescription");
-      ViewBag.IngredientId = new MultiSelectList(_db.Ingredients.Where(entry => entry.User.Id == currentUser.Id), "IngredientId", "IngredientDescription");
+      ViewBag.TagId = new MultiSelectList(_db.Tags, "TagId", "TagDescription");
+      ViewBag.IngredientId = new MultiSelectList(_db.Ingredients, "IngredientId", "IngredientDescription");
       ViewBag.CurrentUser = userId;
       return View();
     }
@@ -81,9 +81,14 @@ namespace RecipeBox.Controllers
       return View(thisRecipe);
     }
 
-    public ActionResult Edit(int id)
+    public async Task<ActionResult> Edit(int id)
     {
-      var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var thisRecipe = _db.Recipes.Include(recipe => recipe.User).FirstOrDefault(recipe => recipe.RecipeId == id);
+      if (userId != thisRecipe.User.Id) 
+      {
+        return RedirectToAction("Details", new {id = id});
+      }
       return View(thisRecipe);
     }
 
@@ -97,7 +102,12 @@ namespace RecipeBox.Controllers
 
     public ActionResult AddTag(int id)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var thisRecipe = _db.Recipes.FirstOrDefault(recipes => recipes.RecipeId == id);
+      if (userId != thisRecipe.User.Id) 
+      {
+        return RedirectToAction("Details", new {id = id});
+      }
       ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagDescription");
       return View(thisRecipe);
     }
@@ -105,7 +115,7 @@ namespace RecipeBox.Controllers
     [HttpPost]
     public ActionResult AddTag(Recipe recipe, int TagId)
     {
-        TagRecipe join = _db.TagRecipe.FirstOrDefault(tagrecipe => tagrecipe.TagId == TagId && tagrecipe.RecipeId == recipe.RecipeId);
+      TagRecipe join = _db.TagRecipe.FirstOrDefault(tagrecipe => tagrecipe.TagId == TagId && tagrecipe.RecipeId == recipe.RecipeId);
       if (TagId != 0 && join == null)
       {
         _db.TagRecipe.Add(new TagRecipe() { TagId = TagId, RecipeId = recipe.RecipeId });
@@ -115,7 +125,12 @@ namespace RecipeBox.Controllers
     }
     public ActionResult Delete(int id)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      if (userId != thisRecipe.User.Id) 
+      {
+        return RedirectToAction("Details", new {id = id});
+      }
       return View(thisRecipe);
     }
 
@@ -130,7 +145,12 @@ namespace RecipeBox.Controllers
 
     public ActionResult AddIngredient(int id)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      if (userId != thisRecipe.User.Id) 
+      {
+        return RedirectToAction("Details", new {id = id});
+      }
       ViewBag.IngredientId = new SelectList(_db.Ingredients, "IngredientId", "IngredientDescription");
       ViewBag.I = _db.RecipeIngredient.Include(recIng => recIng.Ingredient).Where(recIng => recIng.RecipeId != id);
       return View(thisRecipe);
@@ -150,7 +170,12 @@ namespace RecipeBox.Controllers
 
     public ActionResult DeleteIngredient(int id)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var thisRecipe = _db.Recipes.Include(recipes => recipes.Ingredients).FirstOrDefault(recipe => recipe.RecipeId == id);
+      if (userId != thisRecipe.User.Id) 
+      {
+        return RedirectToAction("Details", new {id = id});
+      }
       ViewBag.IngredientId = new SelectList(_db.RecipeIngredient.Include(recipeIngredient => recipeIngredient.Ingredient).Where(recipeIngredient => recipeIngredient.RecipeId == id), "Ingredient.IngredientId", "Ingredient.IngredientDescription");
       return View(thisRecipe);
     }
