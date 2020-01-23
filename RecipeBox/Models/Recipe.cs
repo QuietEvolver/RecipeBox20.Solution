@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace RecipeBox.Models
 {
@@ -11,9 +12,13 @@ namespace RecipeBox.Models
         }
 
         public int RecipeId { get; set; }
+        [Display(Name = "Recipe Name")]
         public string RecipeName { get; set; }
+        [Display(Name = "Recipe Instructions")]
         public string RecipeInstructions { get; set; }
+        [Display(Name = "Recipe Rating")]
        // public string TagRecipes { get; set; }
+       public int RecipeRating { get; set; }
         public virtual ICollection<RecipeIngredient> Ingredients { get; set; }
         public virtual ICollection<TagRecipe> Tags { get; set; }
     }

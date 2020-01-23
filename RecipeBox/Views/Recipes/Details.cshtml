@@ -10,7 +10,20 @@
 <hr/>
 <h3>@Html.DisplayNameFor(model => model.RecipeInstructions): @Html.DisplayFor(model => model.RecipeInstructions)</h3>
 <hr />
+<h3>@Html.DisplayNameFor(model => model.RecipeRating):
+@for (int i=1; i<=5; i++)
+{
+    if (Model.RecipeRating < i)
+    {
+        <i class="fa fa-star-o"></i>
+    }
+    else
+    {
+        <i class="fa fa-star"></i>
+    }
+}
 
+<hr />
 @if (Model.Ingredients.Count == 0)
 {
     <p>No ingredients have been added.</p>
