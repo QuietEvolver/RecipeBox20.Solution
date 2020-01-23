@@ -19,6 +19,7 @@ namespace RecipeBox.Models
         [Display(Name = "Recipe Rating")]
        // public string TagRecipes { get; set; }
         public int RecipeRating { get; set; }
+        public virtual ApplicationUser User { get; set; }
         public virtual ICollection<RecipeIngredient> Ingredients { get; set; }
         public virtual ICollection<TagRecipe> Tags { get; set; }
     }

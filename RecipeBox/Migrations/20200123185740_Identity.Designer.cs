@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RecipeBox.Models;
 
 namespace RecipeBox.Migrations
 {
     [DbContext(typeof(RecipeBoxContext))]
-    partial class RecipeBoxContextModelSnapshot : ModelSnapshot
+    [Migration("20200123185740_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,11 +183,7 @@ namespace RecipeBox.Migrations
 
                     b.Property<string>("IngredientDescription");
 
-                    b.Property<string>("UserId");
-
                     b.HasKey("IngredientId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Ingredients");
                 });
@@ -201,11 +199,7 @@ namespace RecipeBox.Migrations
 
                     b.Property<int>("RecipeRating");
 
-                    b.Property<string>("UserId");
-
                     b.HasKey("RecipeId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Recipes");
                 });
@@ -235,11 +229,7 @@ namespace RecipeBox.Migrations
 
                     b.Property<string>("TagDescription");
 
-                    b.Property<string>("UserId");
-
                     b.HasKey("TagId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Tags");
                 });
@@ -307,20 +297,6 @@ namespace RecipeBox.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("RecipeBox.Models.Ingredient", b =>
-                {
-                    b.HasOne("RecipeBox.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("RecipeBox.Models.Recipe", b =>
-                {
-                    b.HasOne("RecipeBox.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
             modelBuilder.Entity("RecipeBox.Models.RecipeIngredient", b =>
                 {
                     b.HasOne("RecipeBox.Models.Ingredient", "Ingredient")
@@ -332,13 +308,6 @@ namespace RecipeBox.Migrations
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("RecipeBox.Models.Tag", b =>
-                {
-                    b.HasOne("RecipeBox.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("RecipeBox.Models.TagRecipe", b =>
