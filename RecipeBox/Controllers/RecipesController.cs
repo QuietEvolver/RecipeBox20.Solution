@@ -18,7 +18,7 @@ namespace RecipeBox.Controllers
 
     public ActionResult Index()
     {
-      List<Recipe> model = _db.Recipes.ToList();
+      List<Recipe> model = _db.Recipes.OrderByDescending(recipe => recipe.RecipeRating).ToList();
       return View(model);
     }
 // Then add tags

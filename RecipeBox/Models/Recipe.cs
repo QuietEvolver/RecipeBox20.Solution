@@ -18,7 +18,7 @@ namespace RecipeBox.Models
         public string RecipeInstructions { get; set; }
         [Display(Name = "Recipe Rating")]
        // public string TagRecipes { get; set; }
-       public int RecipeRating { get; set; }
+        public int RecipeRating { get; set; }
         public virtual ICollection<RecipeIngredient> Ingredients { get; set; }
         public virtual ICollection<TagRecipe> Tags { get; set; }
     }
