@@ -125,5 +125,19 @@ namespace RecipeBox.Controllers
         _db.SaveChanges();
         return RedirectToAction("Index");
     }
+     public ActionResult DeleteTag(int id)
+    {
+      var thisRecipe = _db.Recipes.Include(recipes => recipes.Tags).FirstOrDefault(recipe => recipe.RecipeId == id);
+      ViewBag.TagId = new SelectList(_db.TagRecipe.Include(tagrecipe => tagrecipe.Tag).Where(tagrecipe => tagrecipe.RecipeId == id), "Tag.TagId", "Tag.TagDescription");
+      return View(thisRecipe);
+    }
+    [HttpPost]
+    public ActionResult DeleteTag(Recipe recipe, int TagId)
+    {
+        TagRecipe join = _db.TagRecipe.FirstOrDefault(recipeTag => recipeTag.TagId == TagId && recipeTag.RecipeId == recipe.RecipeId);
+        _db.TagRecipe.Remove(join);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
   }
 }
