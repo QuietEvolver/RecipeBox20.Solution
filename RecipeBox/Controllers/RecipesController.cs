@@ -27,7 +27,7 @@ namespace RecipeBox.Controllers
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
       var currentUser = await _userManager.FindByIdAsync(userId);
-      var userRecipes = _db.Recipes.OrderByDescending(recipe => recipe.RecipeRating).Where(entry => entry.User.Id == currentUser.Id).ToList();
+      var userRecipes = _db.Recipes.OrderByDescending(recipe => recipe.RecipeRating).ToList();
       return View(userRecipes);
     }
 
@@ -37,7 +37,7 @@ namespace RecipeBox.Controllers
       var currentUser = await _userManager.FindByIdAsync(userId);
       ViewBag.TagId = new MultiSelectList(_db.Tags.Where(entry => entry.User.Id == currentUser.Id), "TagId", "TagDescription");
       ViewBag.IngredientId = new MultiSelectList(_db.Ingredients.Where(entry => entry.User.Id == currentUser.Id), "IngredientId", "IngredientDescription");
-      ViewBag.CurrentUser = currentUser.Id;
+      ViewBag.CurrentUser = userId;
       return View();
     }
 
@@ -66,14 +66,18 @@ namespace RecipeBox.Controllers
       return RedirectToAction("Index");
     }
 
-    public ActionResult Details(int id)
+    public async Task<ActionResult> Details(int id)
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
       var thisRecipe = _db.Recipes
+          .Include(recipe => recipe.User)
           .Include(recipe => recipe.Ingredients)
           .ThenInclude(join => join.Ingredient)
           .Include(recipe => recipe.Tags)
           .ThenInclude(join => join.Tag)
           .FirstOrDefault(recipe => recipe.RecipeId == id);
+      ViewBag.currentUser = userId;
       return View(thisRecipe);
     }
 
