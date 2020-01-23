@@ -110,5 +110,20 @@ namespace RecipeBox.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult DeleteIngredient(int id)
+    {
+      var thisRecipe = _db.Recipes.Include(recipes => recipes.Ingredients).FirstOrDefault(recipe => recipe.RecipeId == id);
+      ViewBag.IngredientId = new SelectList(_db.RecipeIngredient.Include(recipeIngredient => recipeIngredient.Ingredient).Where(recipeIngredient => recipeIngredient.RecipeId == id), "Ingredient.IngredientId", "Ingredient.IngredientDescription");
+      return View(thisRecipe);
+    }
+    [HttpPost]
+    public ActionResult DeleteIngredient(Recipe recipe, int IngredientId)
+    {
+        RecipeIngredient join = _db.RecipeIngredient.FirstOrDefault(recipeIngredient => recipeIngredient.IngredientId == IngredientId && recipeIngredient.RecipeId == recipe.RecipeId);
+        _db.RecipeIngredient.Remove(join);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
   }
 }
