@@ -1,16 +1,6 @@
-Recipe Box
-Build an app that allows users to keep track of recipes. Here are some user stories:
 
-As a user, I want to add a recipe with ingredients and instructions, so I remember how to prepare my favorite dishes.
-As a user, I want to tag my recipes with different categories, so recipes are easier to find. A recipe can have many tags and a tag can have many recipes.
-As a user, I want to be able to update and delete tags, so I can have flexibility with how I categorize recipes.
-As a user, I want to edit my recipes, so I can make improvements or corrections to my recipes.
-As a user, I want to be able to delete recipes I don't like or use, so I don't have to see them as choices.
-As a user, I want to rate my recipes, so I know which ones are the best.
-As a user, I want to list my recipes by highest rated so I can see which ones I like the best.
-As a user, I want to see all recipes that use a certain ingredient, so I can more easily find recipes for the ingredients I have.
 
-#Animal Shelter
+#Recipe Box
 
 <h1 align="center">VWNP's Recipes!
   <a href="https://github.com/QuietEvolver/RecipeBox20.Solution">     
@@ -62,15 +52,24 @@ As a user, I want to see all recipes that use a certain ingredient, so I can mor
 - [License](#-license)
 
 ## Description
-A program app for a recipe to track the names and ingredients (such as flour or barley). 
-
+A program app  that allows users to keep track of recipes ex. names and ingredients (such as flour or barley).
 
 ### Steps/Use Case:
+
 | Spec | Input | Output |
 | :-------------     | :------------ | :------------- |
 | **Homepage** | User accesses:http://localhost:5000/| User vies:Landing Homepage |
 | **User enters in a recipe's name | I: Type: "Dessert" , Recipe Name: "Pumpkin Pie" | None;|
-| **User clicks button and recipe's info is populated | I: (click button) | O: Id: "1", Type: "Dessert" , Recipe Name: "Pumpkin Pie"|
+| **User clicks button and recipe's info is populated | I: (click button) | O: Id: "1", Type: "Dessert" , Recipe Name: "Pumpkin Pie"|As a user, I want to add a recipe with ingredients and instructions, so I remember how to prepare my favorite dishes.
+
+As a user, I can: 
+ - tag my recipes with different categories, so recipes are easier to find. A recipe can have many tags and a tag can have many recipes.
+ - update and delete tags, so I can have flexibility with how I categorize recipes.
+ - edit my recipes, so I can make improvements or corrections to my recipes.
+ - delete recipes I don't like or use, so I don't have to see them as choices.
+ - rate my recipes, so I know which ones are the best.
+ - list my recipes by highest rated so I can see which ones I like the best.
+ - see all recipes that use a certain ingredient, so I can more easily find recipes for the ingredients I have.
 
 ### Specifications
 
