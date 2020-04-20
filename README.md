@@ -95,8 +95,7 @@ As a user, I can:
 | Author | GitHub | Email |
 |--------|:------:|:-----:|
 | Vera Weikel | [quietevolver](https://github.com/quietevolver) |  [quiet.evolver@gmail.com](mailto:quietevolver@gmail.com)
-
-| Nina Potrevich | [potrebichka](https://github.com/weidai07) |  [potrebichka@gmail.com](mailto:potrebichka@gmail.com)
+| Nina Potrevich | [potrebichka](https://github.com/potrebichka) |  [potrebichka@gmail.com](mailto:potrebichka@gmail.com)
 _Please contact with questions and/or comments._
 
 
