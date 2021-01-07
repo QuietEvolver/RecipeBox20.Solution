@@ -1,6 +1,6 @@
 
 
-#Recipe Box
+# Recipe Box
 
 <h1 align="center">VWNP's Recipes!
   <a href="https://github.com/QuietEvolver/RecipeBox20.Solution">     
@@ -11,20 +11,11 @@
   <strong></strong><br>
 </p>
 
-<p align="center">
+<p align="center">  <a href="https://github.blog/2016-08-22-publish-your-project-documentation-with-github-pages/">
+  <a href="https://camo.githubusercontent.com/a39c3ed8fcadb627a5d2c3dda910f9442c8a1a562532ca879341c7ba811f3683/68747470733a2f2f6769746875622e626c6f672f77702d636f6e74656e742f75706c6f6164732f323031392f30312f436f6d6d756e6974794032782e706e67">
+    <img src="https://avatars3.githubusercontent.com/u/34698193?s=460&u=ab64d9d2675a32784f4c56b936876b9d85e245c3&v=4" width=100px alt="quietevolver" />
+  </a>
 
-  <a href="https://github.blog/category/community/">
-    <img src="https://github.blog/wp-content/uploads/2019/01/Community@2x.png" width=100px alt="GH-Community" />
-  </a>
-  <a href="https://github.com/quietevolver/RecipeBox20.Solution.git">
-    <img src="https://avatars2.githubusercontent.com/u/55602501?s=460&v=4" width=100px alt="quietevolver" />
-  </a>
-  <a href="ttps://github.com/potrebichka/RecipeBox.Solution.git">
-    <img src="https://avatars2.githubusercontent.com/u/32409475?s=460&v=4" width=100px alt="potrebichka" />
-  </a>
-  <a href="https://github.blog/2016-08-22-publish-your-project-documentation-with-github-pages/">
-    <img src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/collections/github-pages-examples/github-pages-examples.png" width=100px alt="gh-pages" />
-  </a>
 </p>
 
 <h3 align="center">
